@@ -17,7 +17,7 @@ if (process.env.NODE_ENV !== 'production') {
   host = window.location.href.replace('http://', '').replace('https://', '').replace('/', '')
 }
 
-let baseApiUrl = `//${host}/`
+const baseApiUrl = `//${host}/`
 
 Vue.prototype.$baseApiUrl = baseApiUrl
 Vue.prototype.$host = host

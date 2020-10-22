@@ -3,24 +3,24 @@
 var readDir = require('readdir')
 var _ = require('lodash')
 
-let isDir = function (path) {
+const isDir = function (path) {
   return path.match(/\/$/)
 }
 
-let getName = function (path) {
+const getName = function (path) {
   return _.split(path, '/').filter((i) => i !== '').pop()
 }
 
-let splitPath = function (path) {
+const splitPath = function (path) {
   return _.split(path, '/').filter((i) => i !== '')
 }
 
-let getDirList = function (path) {
+const getDirList = function (path) {
   var list = readDir.readSync(path, null, readDir.INCLUDE_DIRECTORIES + readDir.INCLUDE_HIDDEN)
   return _.filter(list, (i) => !i.match(/[\\]\.|node_modules|\.git|\.DS_Store/))
 }
 
-let getDirJson = function (path) {
+const getDirJson = function (path) {
   var list = readDir.readSync(path, null, readDir.INCLUDE_DIRECTORIES + readDir.INCLUDE_HIDDEN)
   list = _.filter(list, (i) => !i.match(/[\\]\.|node_modules|\.git|\.DS_Store/))
 
@@ -48,8 +48,8 @@ let getDirJson = function (path) {
     }
     temp[i].splice(0, 0, info)
   })
-  let rootName = process.cwd().split('/').pop()
-  let dirTree = {
+  const rootName = process.cwd().split('/').pop()
+  const dirTree = {
     name: rootName,
     path: '/',
     type: 'directory',

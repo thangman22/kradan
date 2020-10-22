@@ -14,7 +14,7 @@ export default new Vuex.Store({
     mutateCurrentOpenFilePath (state, path) {
       state.currentOpenFilePath = path
     },
-    sliceOpenFiles (state, {index, newFile}) {
+    sliceOpenFiles (state, { index, newFile }) {
       state.openFiles.splice(index + 1, 0, newFile)
     },
     sliceUnseenFilePaths (state, { index, newFile }) {

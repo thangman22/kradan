@@ -91,7 +91,7 @@ export default {
     })
     socket.on('change', (path) => {
       this.addUnseenFile(path)
-      let fileChanged = this.openFiles.find(file => file.path === path)
+      const fileChanged = this.openFiles.find(file => file.path === path)
       if (fileChanged) {
         this.getFile(path)
       }
@@ -104,16 +104,16 @@ export default {
       'sliceUnseenFilePaths'
     ]),
     async getFile (path) {
-      let response = await this.$http.get('/files' + path)
+      const response = await this.$http.get('/files' + path)
       const name = path.split('/').pop()
-      let newFile = {
+      const newFile = {
         name: name,
         path: path,
         code: '',
         unseenLines: [],
 
         marker: () => {
-          let marker = document.createElement('div')
+          const marker = document.createElement('div')
           marker.style.color = '#fba949'
           marker.innerHTML = '|'
           return marker
@@ -132,7 +132,7 @@ export default {
 
       // const ext = path.split('.').pop()
 
-      let fileChanged = this.openFiles.find(file => file.path === path)
+      const fileChanged = this.openFiles.find(file => file.path === path)
       if (fileChanged) {
         // diff line changed
         let code = ''
@@ -143,7 +143,7 @@ export default {
           code = beautify(response.data, null, 2, 100)
         }
 
-        let diff = diffLines(fileChanged.code, code)
+        const diff = diffLines(fileChanged.code, code)
         console.log(fileChanged.code, code)
         fileChanged.unseenLines = this.addUnseenLine(diff)
         fileChanged.code = code
@@ -158,7 +158,7 @@ export default {
 
         const index = this.openFiles.findIndex(file => file.path === this.currentOpenFilePath)
 
-        this.sliceOpenFiles({index, newFile})
+        this.sliceOpenFiles({ index, newFile })
         this.mutateCurrentOpenFilePath(path)
       }
     },
@@ -186,12 +186,12 @@ export default {
     addUnseenFile: function (path) {
       if (!this.unseenFilePaths.find(unseen => unseen === path)) {
         this.unseenFilePaths.push(path)
-        let subPaths = path.split('/')
+        const subPaths = path.split('/')
         subPaths.shift()
         subPaths.shift()
         subPaths.forEach(subPath => {
           const newPath = path.substring(0, path.search('/' + subPath))
-          this.unseenFolderPaths.push({path: newPath + '/', file: path})
+          this.unseenFolderPaths.push({ path: newPath + '/', file: path })
         })
       }
     },
@@ -208,7 +208,7 @@ export default {
     },
     addUnseenLine: function (diff) {
       let count = 0
-      let lines = []
+      const lines = []
       diff.forEach(item => {
         if (item.added === undefined && item.removed === undefined) {
           count += item.count
@@ -232,7 +232,7 @@ export default {
     },
     async downloadZip () {
       await this.getZip(this.list)
-      const blob = await zip.generateAsync({type: 'blob'})
+      const blob = await zip.generateAsync({ type: 'blob' })
       saveAs(blob, this.list.name + '.zip')
     },
     async getZip (lists) {
@@ -242,20 +242,20 @@ export default {
           await this.getZip(list)
         } else if (list.type === 'file' && (type === 'PNG' || type === 'JPG' || type === 'JPEG' || type === 'ICO' || type === 'SVG' || type === 'GIF')) {
           const imgData = await this.promiseImage(list)
-          zip.file(this.list.name + list.path, imgData, {base64: true})
+          zip.file(this.list.name + list.path, imgData, { base64: true })
         } else if (list.type === 'file' && type !== 'MAP') {
           const response = await this.$http.get('/files' + list.path)
-          zip.file(this.list.name + list.path, response.data, {binary: true})
+          zip.file(this.list.name + list.path, response.data, { binary: true })
         }
       }
     },
     promiseImage (list) {
       return new Promise((resolve, reject) => {
-        let img = document.createElement('img')
+        const img = document.createElement('img')
         img.setAttribute('crossorigin', 'anonymous')
         img.src = this.$baseApiUrl + 'files' + list.path
         img.onload = function () {
-          let c = document.createElement('canvas')
+          const c = document.createElement('canvas')
           c.width = this.naturalWidth
           c.height = this.naturalHeight
           c.getContext('2d').drawImage(this, 0, 0)

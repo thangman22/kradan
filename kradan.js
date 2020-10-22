@@ -91,7 +91,7 @@ var staticPath = path.join(__dirname, './dist')
 app.use('/', express.static(staticPath))
 
 app.get('/ls', function (req, res) {
-  let result = helper.getDirJson(currentPath)
+  const result = helper.getDirJson(currentPath)
   res.send(result)
 })
 
