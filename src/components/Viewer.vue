@@ -16,7 +16,7 @@
 
 import { codemirror } from 'vue-codemirror'
 import 'codemirror/lib/codemirror.css'
-import 'codemirror/theme/material.css'
+import '@/assets/vscode-dark.css'
 import 'codemirror/mode/javascript/javascript.js'
 import 'codemirror/mode/php/php.js'
 import 'codemirror/mode/vue/vue.js'

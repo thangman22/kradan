@@ -12,10 +12,6 @@
           </item>
         </ul>
       </div>
-      <div download  class="download-button" @click="downloadZip">
-        <i class="fas fa-download"></i>&nbsp;
-        {{list.name}}.zip
-      </div>
     </div>
     <div class="resize" @mousedown="mouseDown"></div>
     <div class="right" :style="{ 'width': divRight + 'px' }">
@@ -45,17 +41,12 @@
 </template>
 
 <script>
-import JSZip from 'jszip'
-import { saveAs } from 'file-saver'
 import { connect } from 'socket.io-client'
 import beautify from 'json-beautify'
 import { mapMutations, mapGetters } from 'vuex'
 const Viewer = () => import('@/components/Viewer')
 const Item = () => import('@/components/Item')
-
 const { diffLines } = require('diff')
-const zip = new JSZip()
-
 export default {
   name: 'App',
   data () {
@@ -120,7 +111,7 @@ export default {
         },
         editorOption: {
           tabSize: 4,
-          theme: 'material',
+          theme: 'vscode-dark',
           lineNumbers: true,
           lineWrapping: false,
           line: true,
@@ -230,25 +221,6 @@ export default {
     isUnseenTab (file) {
       return this.unseenFilePaths.find(path => path === file)
     },
-    async downloadZip () {
-      await this.getZip(this.list)
-      const blob = await zip.generateAsync({ type: 'blob' })
-      saveAs(blob, this.list.name + '.zip')
-    },
-    async getZip (lists) {
-      for (const list of lists.children) {
-        const type = list.path.split('.').pop().toUpperCase()
-        if (list.type === 'directory') {
-          await this.getZip(list)
-        } else if (list.type === 'file' && (type === 'PNG' || type === 'JPG' || type === 'JPEG' || type === 'ICO' || type === 'SVG' || type === 'GIF')) {
-          const imgData = await this.promiseImage(list)
-          zip.file(this.list.name + list.path, imgData, { base64: true })
-        } else if (list.type === 'file' && type !== 'MAP') {
-          const response = await this.$http.get('/files' + list.path)
-          zip.file(this.list.name + list.path, response.data, { binary: true })
-        }
-      }
-    },
     promiseImage (list) {
       return new Promise((resolve, reject) => {
         const img = document.createElement('img')
@@ -284,8 +256,8 @@ export default {
 
 <style lang="scss">
 html, body {
-  background-color: #202A2F;
-  color: #9AAEB7;
+  background-color: #1e1e1e;
+  color: #F5F7FA;
   overflow: hidden;
   margin: 0;
   padding: 0;
@@ -303,7 +275,7 @@ html, body {
 .app {
   background: #FFF;
   height: 100vh;
-  background: #202A2F;
+  background: #1e1e1e;
   .resize {
     background-color: #1a1b1c;
     display: inline-block;
@@ -315,7 +287,7 @@ html, body {
     overflow-x: hidden;
     display: inline-block;
     height: 100vh;
-    font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     font-size: 14px;
     .tree {
       height: 92vh;
@@ -381,7 +353,7 @@ html, body {
         padding-right: 10px;
         cursor: pointer;
         user-select: none;
-        font-family: 'BlinkMacSystemFont', 'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
         font-size: 14px;
         &:hover {
           color: #ccc;
@@ -419,6 +391,7 @@ html, body {
 .item {
   cursor: pointer;
   user-select: none;
+  padding: 2px;
 }
 .bold {
   font-weight: bold;
@@ -431,18 +404,18 @@ ul {
 li {
   list-style-type: none;
   &.is-unseen {
-    color: #EAB877;
+    color: #F5F7FA;
   }
   &.is-active {
     color: #ffffff;
     background-color: #263238;
   }
   &.is-active-unseen {
-    color: #EAB877;
+    color: #F5F7FA;
     background-color: #263238;
   }
   &.is-none {
-    color: #9aaeb7;
+    color: #F5F7FA;
   }
 }
 .CodeMirror {

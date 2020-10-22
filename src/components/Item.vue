@@ -2,8 +2,11 @@
   <li :class="{'is-active-unseen': isActiveUnseen, 'is-active': currentOpenFilePath === model.path, 'is-unseen': isUnseen, 'is-none': isNone}">
     <div
       @click="onClick">
-      <span v-if="isFolder">{{open ? '▼  ' : '▶ '}}</span>
-      <img :src="isIcon" width="15px" height="15px">
+      <span v-if="isFolder">
+        <i class="fas fa-chevron-down type-icon" v-if="open"></i>
+        <i class="fas fa-chevron-right type-icon" v-if="!open"></i>
+      </span>
+      <img :src="isIcon" width="16px" height="16px" class="type-icon">
       {{model.name}}
     </div>
     <ul v-if="open && isFolder">
@@ -106,3 +109,9 @@ export default {
   }
 }
 </script>
+<style>
+.type-icon{
+  margin-right: 3px;
+  vertical-align: sub;
+}
+</style>
