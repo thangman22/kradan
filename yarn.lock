@@ -10302,10 +10302,10 @@ readable-stream@^3.0.6, readable-stream@^3.1.1, readable-stream@^3.6.0:
     string_decoder "^1.1.1"
     util-deprecate "^1.0.1"
 
-readdir@0.0.13:
-  version "0.0.13"
-  resolved "https://registry.yarnpkg.com/readdir/-/readdir-0.0.13.tgz#4dd002d3f30dc11afe3bb177ad8e99094f7f62dd"
-  integrity sha1-TdAC0/MNwRr+O7F3rY6ZCU9/Yt0=
+readdir@0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/readdir/-/readdir-0.1.0.tgz#1b587f2c629fc93f8c86d5afd42d172293401a12"
+  integrity sha512-6ooimObbcBEgROguDY083rVL7EKMWWRYEujAld28oinI3mflpfXJVBGtFNjtRnpYFjuD2RGayOmQJnVEGPyXVQ==
   dependencies:
     q "~1.0.1"
 
