@@ -24,7 +24,7 @@
     "json-beautify": "^1.0.1",
     "lodash": "^4.16.4",
     "minimist": "^1.2.0",
-    "ngrok": "^3.0.1",
+    "ngrok": "3.4.1",
     "os": "^0.1.1",
     "readdir": "0.1.0",
     "socket.io": "^1.5.0",
