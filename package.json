@@ -17,7 +17,7 @@
     "axios": "^0.18.0",
     "chokidar": "^1.6.0",
     "colors": "^1.1.2",
-    "core-js": "^3.6.5",
+    "core-js": "3.25.2",
     "express": "^4.14.0",
     "jest": "^20.0.4",
     "js-beautify": "^1.7.5",
