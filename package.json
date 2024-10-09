@@ -44,7 +44,7 @@
     "@vue/eslint-config-standard": "^5.1.2",
     "@vue/test-utils": "^1.0.0-beta.16",
     "babel-core": "7.0.0-bridge.0",
-    "babel-eslint": "^10.1.0",
+    "@babel/eslint-parser": "^7.11.0",
     "babel-jest": "^22.4.3",
     "diff": "^3.5.0",
     "eslint": "^6.7.2",
