@@ -8574,6 +8574,11 @@ mkpath@^0.1.0:
   resolved "https://registry.yarnpkg.com/mkpath/-/mkpath-0.1.0.tgz#7554a6f8d871834cc97b5462b122c4c124d6de91"
   integrity sha1-dVSm+Nhxg0zJe1RisSLEwSTW3pE=
 
+monaco-editor@^0.17.0:
+  version "0.17.1"
+  resolved "https://registry.yarnpkg.com/monaco-editor/-/monaco-editor-0.17.1.tgz#8fbe96ca54bfa75262706e044f8f780e904aa45c"
+  integrity sha512-JAc0mtW7NeO+0SwPRcdkfDbWLgkqL9WfP1NbpP9wNASsW6oWqgZqNIWt4teymGjZIXTElx3dnQmUYHmVrJ7HxA==
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -12335,11 +12340,12 @@ vue-loader@^15.9.2:
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
 
-vue-monaco@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/vue-monaco/-/vue-monaco-0.1.6.tgz#b6da331ef004bed3a216698a198807843a3c2aad"
-  integrity sha512-j32XZuvl30eYQlMyDWkO8OZKLgMvpG4kleL9sUUtzbQTFjk1BtayfFr2lJTIRR1Boe+jJevRrbeom8sPbgD6GA==
+vue-monaco@^0.3.0:
+  version "0.3.2"
+  resolved "https://registry.yarnpkg.com/vue-monaco/-/vue-monaco-0.3.2.tgz#a4aba3dffe13bcee7710a5b48cf8c5c29ada364e"
+  integrity sha512-GWdtTuxUxse+tqs7B9zH3CosCZlpXNae1G7dlI1lmUrEDG+vtoBtulUBjhLseHZIwsuthebcRNgkVSdDMa8Tcw==
   dependencies:
+    monaco-editor "^0.17.0"
     nano-assign "^1.0.0"
 
 vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
